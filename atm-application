@@ -1,0 +1,113 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class user
+{
+private:
+        string name;
+        string password;
+public:
+
+        double balance = 150000;
+        user(string a,string b)
+        {
+            name = a;
+            password = b;
+        }     
+        bool checkpassword(string pass)
+        {
+            if(pass==password)
+            {
+                cout<<"PASSWORD IS OK"<<endl;
+                return 1;
+            }
+            else  {cout<<"Password is wrong"<<endl;return 0;}
+
+        }  
+        bool checkname(string nam)
+        {
+            if(nam==name)
+            {
+                cout<<"Username IS OK"<<endl;
+                return 1;
+            }
+            else  {cout<<"Username  is wrong"<<endl;return 0;}
+
+        } 
+
+
+};
+int startmenu()
+{
+    cout<<"*****MAIN MENU*****"<<endl;
+    cout<<"1-BALANCE"<<endl;
+    cout<<"2-DEPOSIT"<<endl;
+    cout<<"3-WITHDRAW"<<endl;
+    cout<<"4-EXIT"<<endl;
+    cout<<"Selection"<<endl;
+    int op;
+    cin>>op;
+
+    return op;
+}
+int main ()
+{
+    user u1 = user("UMAIR","081204");
+    
+    string n,p;
+    cout<<"*****Welcome to ATM Machine*****"<<endl;
+    cout<<"Enter USERNAME"<<endl;
+    cin>>n;
+    cout<<"Enter PASSWORD"<<endl;
+    cin>>p;
+    
+
+    if(u1.checkname(n) && u1.checkpassword(p))
+    {
+    start:
+        int i;
+        i=startmenu();
+        
+        switch (i)
+        {
+        case 1:{cout<<"Your Balance is :"<<u1.balance<<endl; break;}
+        case 2:
+        {
+            double dep;
+            cout<<"Enter amount to Deposit:"<<endl;
+            cin>>dep;
+            u1.balance+=dep;
+            break;
+        }
+        case 3:
+        {
+            double wid;
+            cout<<"Enter the amount you want to Withdraw:"<<endl;
+            cin>>wid;
+            if(wid>u1.balance)cout<<"INSUFFICENT FUNDS:"<<endl;
+            else u1.balance-=wid;
+            break;
+        }
+
+        case 4:
+        break;
+
+
+        
+        }
+
+        cout<<"***WOuld you like to Continue****"<<endl;
+        cout<<"1-yes"<<endl;
+        cout<<"2-No"<<endl;
+        cout<<"Selection"<<endl;
+
+        int in;
+        cin>>in;
+
+        if(in==1){system("cls");  goto start ;}
+
+    }    
+    
+    return 0;
+}
